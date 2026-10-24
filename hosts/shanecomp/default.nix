@@ -1,0 +1,29 @@
+{specialArgs, ...}:
+specialArgs.nixpkgs.lib.nixosSystem {
+  inherit specialArgs;
+  system = "x86_64-linux";
+  modules = [
+    ./configuration.nix
+    ./hardware-configuration.nix
+    ./amd.nix
+    ./ollama.nix
+
+    (import "${specialArgs.home-manager}/nixos")
+    (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
+
+    ../../mixins/base
+    ../../mixins/agy
+    ../../mixins/docker
+    ../../mixins/tailscale
+    ../../mixins/flatpak
+    ../../mixins/xivlauncher
+    ../../mixins/steam
+    ../../mixins/lutris
+    ../../mixins/kde
+    ../../mixins/input-remapper
+    ../../mixins/distrobox
+    ../../mixins/virtualization
+    ../../mixins/godot
+    ../../mixins/guix
+  ];
+}
