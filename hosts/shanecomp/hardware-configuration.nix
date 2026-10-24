@@ -12,52 +12,36 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage"];
-  boot.initrd.kernelModules = ["uinput"];
+  boot.initrd.availableKernelModules = [
+    "nvme"
+    "xhci_pci"
+    "thunderbolt"
+    "usbhid"
+    "sdhci_pci"
+  ];
+
+  # Force the exact Live CD dependency chain
+  boot.initrd.kernelModules = [
+    # Graphics stack (Early KMS to eliminate GDM delay)
+    "amdgpu"
+    "nvidia"
+    "nvidia_modeset"
+    "nvidia_uvm"
+    "nvidia_drm"
+
+    "usbhid"
+    "i8042"
+    "i2c_piix4"
+    "i2c_hid_acpi"
+    "asus_wmi"
+    "asus_nb_wmi"
+    "hid_asus"
+  ];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/0b4e1232-447f-49f4-b59e-c0c62935b1aa";
-    fsType = "ext4";
-  };
+  boot.kernelParams = ["nvidia_drm.fbdev=1"];
 
-  boot.kernelParams = [
-    "usbcore.autosuspend=-1"
-  ];
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/12CE-A600";
-    fsType = "vfat";
-    options = ["fmask=0077" "dmask=0077"];
-  };
-
-  # NVMe SSD
-  fileSystems."/games/steam" = {
-    device = "/dev/disk/by-uuid/f5554d50-6328-4a99-b431-39aafe5d502d";
-    fsType = "ext4";
-  };
-
-  # SATA SSD
-  fileSystems."/games/steam-slow" = {
-    device = "/dev/disk/by-uuid/5ade1a48-9710-4bb2-b408-a63e0da330b4";
-    fsType = "ext4";
-  };
-
-  swapDevices = [
-    {device = "/dev/disk/by-uuid/f137f589-c051-4fed-9592-c172a5a69555";}
-  ];
-
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp6s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.tailscale0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.virbr0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp5s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp7s0.useDHCP = lib.mkDefault true;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_7_2;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

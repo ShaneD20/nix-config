@@ -5,25 +5,23 @@ specialArgs.nixpkgs.lib.nixosSystem {
   modules = [
     ./configuration.nix
     ./hardware-configuration.nix
-    ./amd.nix
-    ./ollama.nix
 
     (import "${specialArgs.home-manager}/nixos")
-    (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
+    (import ../../users/shane {stateVersion = specialArgs.cleanVersion;})
 
+    specialArgs.disko.nixosModules.disko
+    ./disk-config.nix
+    ./amd.nix
+
+    ../../mixins/steam
     ../../mixins/base
-    ../../mixins/agy
     ../../mixins/docker
+    ../../mixins/forge-mtg
+    ../../mixins/xivlauncher
+    ../../mixins/virtualization
     ../../mixins/tailscale
     ../../mixins/flatpak
-    ../../mixins/xivlauncher
-    ../../mixins/steam
-    ../../mixins/lutris
-    ../../mixins/kde
-    ../../mixins/input-remapper
-    ../../mixins/distrobox
-    ../../mixins/virtualization
+    ../../mixins/libreoffice
     ../../mixins/godot
-    ../../mixins/guix
   ];
 }

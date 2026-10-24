@@ -16,6 +16,7 @@
   outputs = inputs @ {
     self,
     nixpkgs,
+    disko,
     ...
   }: let
     inherit

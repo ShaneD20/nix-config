@@ -1,22 +1,17 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 {
-  config,
   lib,
+  config,
   pkgs,
   ...
 }: {
+  # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.consoleMode = "2"; # or "0", "1", "2", "auto"
+  boot.plymouth.enable = false;
 
-  services.openssh.enable = true;
-  services.avahi.enable = true;
+  networking.hostName = "shanecomp";
+  services.fwupd.enable = true;
 
-  networking.hostName = "dn-obsidian";
-
-  programs.ssh.forwardX11 = true;
-  services.openssh.settings.X11Forwarding = true;
-
-  system.stateVersion = "25.11"; # Did you read the comment?
+  system.stateVersion = "26.05"; # Did you read the comment?
 }
