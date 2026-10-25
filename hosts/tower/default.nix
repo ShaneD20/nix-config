@@ -16,8 +16,6 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/steam
     ../../mixins/base
     ../../mixins/docker
-    ../../mixins/forge-mtg
-    ../../mixins/xivlauncher
     ../../mixins/virtualization
     ../../mixins/tailscale
     ../../mixins/flatpak

@@ -5,9 +5,9 @@
 }: {
   home-manager.users.shane.programs.git = {
     enable = true;
-    settings.user.name = "David Nuon";
-    settings.user.email = "shanegm@gmail.com";
-    settings.core.editor = "vim";
+    settings.user.name = "Shane";
+    settings.user.email = "sunset510@gmail.com";
+    settings.core.editor = "nano";
     settings.init.defaultBranch = "main";
     lfs.enable = true;
   };
