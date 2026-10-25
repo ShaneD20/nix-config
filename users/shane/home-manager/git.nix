@@ -7,7 +7,7 @@
     enable = true;
     settings.user.name = "Shane";
     settings.user.email = "sunset510@gmail.com";
-    settings.core.editor = "vim";
+    settings.core.editor = "nano";
     settings.init.defaultBranch = "main";
     lfs.enable = true;
   };
