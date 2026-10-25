@@ -10,7 +10,7 @@
 
   users.users.shane = {
     isNormalUser = true;
-    description = "David Nuon";
+    description = "Shane";
     extraGroups = [
       "networkmanager"
       "wheel"
