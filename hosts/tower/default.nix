@@ -13,13 +13,13 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ./disk-config.nix
     ./amd.nix
 
-    ../../mixins/steam
     ../../mixins/base
+    ../../mixins/steam
     ../../mixins/docker
     ../../mixins/virtualization
-    ../../mixins/tailscale
     ../../mixins/flatpak
     ../../mixins/libreoffice
     ../../mixins/godot
+    ../../mixins/claude
   ];
 }
