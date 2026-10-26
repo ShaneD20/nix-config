@@ -18,7 +18,7 @@
               };
             };
             swap = {
-              size = "3G"; # Adjust size as needed (e.g., "4G", "16G")
+              size = "3G"; # 8 GB RAM (needs 4), 16 GB RAM+ (needs 2)
               content = {
                 type = "swap";
                 resumeDevice = true; # Set to true if you plan to use hibernation
