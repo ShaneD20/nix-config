@@ -9,7 +9,7 @@
           partitions = {
             ESP = {
               type = "EF00";
-              size = "5G";
+              size = "1G"; #most 300MB - 500MB reasonable
               content = {
                 type = "filesystem";
                 format = "vfat";
@@ -18,7 +18,7 @@
               };
             };
             swap = {
-              size = "32G"; # Adjust size as needed (e.g., "4G", "16G")
+              size = "3G"; # Adjust size as needed (e.g., "4G", "16G")
               content = {
                 type = "swap";
                 resumeDevice = true; # Set to true if you plan to use hibernation
