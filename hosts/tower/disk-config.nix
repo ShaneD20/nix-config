@@ -9,7 +9,7 @@
           partitions = {
             ESP = {
               type = "EF00";
-              size = "5G"; # other OS 300M - 500M reasonable, Nix holds generations (4-6G)
+              size = "10G"; # other OS 300M - 500M reasonable, Nix holds generations (4-6G)
               content = {
                 type = "filesystem";
                 format = "vfat";
@@ -18,7 +18,7 @@
               };
             };
             swap = {
-              size = "4G"; # 2G for a VM free system
+              size = "32G"; # 2G for a VM free system
               content = {
                 type = "swap";
                 resumeDevice = true; # Set to true if you plan to use hibernation
