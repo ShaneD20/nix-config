@@ -7,7 +7,8 @@
     ./core.nix
     ./packages.nix
     ./desktop-core.nix
-    ./desktop-cinnamon.nix
+  #  ./desktop-cinnamon.nix
+    ./desktop-xfce.nix
     ./desktop-lang-jp.nix
     ./unstable.nix
   ];
