@@ -5,6 +5,10 @@
   options,
   ...
 }: {
-  services.xserver.desktopManager.xfce.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
+  # Enable Plasma 
+  services = { # Optionally enable xserver
+    xserver.enable = true;
+    desktopManager.plasma6.enable = true;
+    displayManager.plasma-login-manager.enable = true;
+  };
 }
