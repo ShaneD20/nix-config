@@ -16,7 +16,7 @@
     gnumake
     alejandra
     python314
-
+    firefox
     ncdu
     hyfetch
 
